@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 ################################
 
 # Student: Justin Hudson
@@ -57,10 +60,10 @@ while True:
     print("Please try again. You may only enter a positive integer.")
 
 ## User inputs each element of list (Validates each input is a valid number)
-size_of_list = int(user_input)
+list_size = int(user_input)
 list_of_numbers = []
 i = 0
-while i < size_of_list:
+while i < list_size:
     next_number = input(f"Input the {ordinal(i + 1)} number: ")
     if is_number(next_number):
         list_of_numbers.append(float(next_number))
@@ -70,7 +73,7 @@ while i < size_of_list:
 
 ## Print list of numbers horizontally (separated by commas)
 print("\nList of Numbers (Horizontal):")
-last_index = len(list_of_numbers) - 1
+last_index = list_size - 1
 for index, number in enumerate(list_of_numbers):
     if index == last_index:
         print(f"{number:g}")
@@ -92,7 +95,7 @@ for number in list_of_numbers:
         list_max = number
     if number < list_min:
         list_min = number        
-list_avg = list_sum / len(list_of_numbers)
+list_avg = list_sum / list_size
 
 ## Display them each with a corresponding label at the bottom
 print("\nCustom Functions:")
@@ -110,4 +113,7 @@ print(f"Sum: {sum(list_of_numbers):g}")
 print(f"Max: {max(list_of_numbers):g}")
 print(f"Min: {min(list_of_numbers):g}")
 print(f"Average: {statistics.mean(list_of_numbers):g}\n")
+
+
+get_ipython().system('jupyter nbconvert --to script --no-prompt Assignment_1.ipynb')
 
