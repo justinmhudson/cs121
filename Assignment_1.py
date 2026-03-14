@@ -5,8 +5,6 @@
 # Date: 13/03/2026
 ################################
 
-# TEST!!! ###
-
 import statistics
 
 # Functions to use in main code
@@ -43,7 +41,7 @@ while True:
         break
     print("Please try again. You may only enter a positive integer.")
 
-## User inputs each element of list (Validates each input is a number)
+## User inputs each element of list (Validates each input is a valid number)
 size_of_list = int(user_input)
 list_of_numbers = []
 i = 0
