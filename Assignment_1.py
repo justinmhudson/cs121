@@ -1,11 +1,17 @@
 ################################
+
 # Student: Justin Hudson
 # Instructor: Kaleab Gorfu
 # CS 121: Python for DS and ML
 # Date: 13/03/2026
+
 ################################
 
+# import statistsics to access statistics.mean()
+
 import statistics
+
+################################
 
 # Functions to use in main code
 
@@ -31,13 +37,22 @@ def is_number(number_string):
     except ValueError:
         return False
 
+## Checks if user input is a positive integer
+def is_positive_integer(number_string):
+    if number_string.isdecimal() and int(number_string) > 0:
+        return True
+    else:
+        return False
+
+################################
+
 # Section 1: Writing Code for Sum, Max, Min, Average
 
 ## User inputs size of list (Validates input is positive integer)
 print("\n")
 while True:
     user_input = input("How many numbers would you like to calculate? ")
-    if user_input.isdecimal() and int(user_input) > 0:
+    if is_positive_integer(user_input):
         break
     print("Please try again. You may only enter a positive integer.")
 
@@ -86,6 +101,8 @@ print(f"Max: {list_max:g}")
 print(f"Min: {list_min:g}")
 print(f"Average: {list_avg:g}")
 
+################################
+
 # Section 2: Use Python built-in functions to calculate sum, max, min and average
 
 print("\nBuilt-In Functions:")
@@ -93,3 +110,4 @@ print(f"Sum: {sum(list_of_numbers):g}")
 print(f"Max: {max(list_of_numbers):g}")
 print(f"Min: {min(list_of_numbers):g}")
 print(f"Average: {statistics.mean(list_of_numbers):g}\n")
+
