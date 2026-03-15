@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 ################################
 
 # Student: Justin Hudson
@@ -110,3 +113,4 @@ print(f"Sum: {sum(list_of_numbers):g}")
 print(f"Max: {max(list_of_numbers):g}")
 print(f"Min: {min(list_of_numbers):g}")
 print(f"Average: {statistics.mean(list_of_numbers):g}\n")
+

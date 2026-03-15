@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# coding: utf-8
+
 ################################
 
 # Student: Justin Hudson
@@ -144,3 +147,4 @@ print(f"Median: {statistics.median(list_of_numbers):g}")
 print("Mode: ", end="")
 print_horizontal(statistics.multimode(list_of_numbers))
 print("\n")
+
