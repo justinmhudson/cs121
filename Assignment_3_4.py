@@ -27,7 +27,7 @@ while True:
         user_input = input("Guess any number from 1 to 10: ")
         if validate(user_input):
             break
-        print("Invalid Entry. Please enter an integer between 1 and 10 inclusive.")
+        print("Invalid Entry. Please enter an integer between 1 and 10 inclusive.\n")
 
     counter += 1
     user_guess = int(user_input)
@@ -40,4 +40,7 @@ while True:
         print("Too low!\n")
     else:
         print("Too high!\n")
+
+
+get_ipython().system('jupyter nbconvert --to script --no-prompt --TagRemovePreprocessor.remove_cell_tags="[\'remove\']" Assignment_3_4.ipynb')
 
