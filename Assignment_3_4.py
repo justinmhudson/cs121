@@ -12,20 +12,20 @@
 
 import random
 
-def valid(number_string):
+def validate(number_string):
     if number_string.isdecimal() and int(number_string) >= 1 and int(number_string) <= 10:
         return True
     else:
         return False
 
-print("\n")
 counter = 0
 random_number = random.randint(1,10)
 
+print("\n")
 while True:
     while True:
         user_input = input("Guess any number from 1 to 10: ")
-        if valid(user_input):
+        if validate(user_input):
             break
         print("Invalid Entry. Please enter an integer between 1 and 10 inclusive.")
 

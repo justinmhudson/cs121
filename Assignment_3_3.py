@@ -26,7 +26,6 @@ while True:
     else:
         coin_flip = random.randint(1,2)
         user_guess = int(user_input)
-
         if coin_flip == user_guess:
             print("You win!\n")
         else:
