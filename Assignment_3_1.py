@@ -12,9 +12,8 @@
 
 # Import necessary libraries
 import matplotlib.pyplot as plt
-import numpy as np
-import random 
 import seaborn as sns
+import random 
 
 # Constant variable to control number of rolls 
 NUMBER_OF_ROLLS = 10
@@ -22,7 +21,7 @@ NUMBER_OF_ROLLS = 10
 # Role die and calculate frequency
 rolls = [random.randrange(1,7) for i in range(NUMBER_OF_ROLLS)]
 values = [1,2,3,4,5,6]
-frequencies = np.array([rolls.count(v) for v in values]) 
+frequencies = [rolls.count(v) for v in values]
 
 # Create bar graph with Seaborn
 sns.set_style('whitegrid')
@@ -41,4 +40,6 @@ for bar, frequency in zip(axes.patches, frequencies):
     text_y = bar.get_height()
     text = f'{frequency:,}\n{frequency / len(rolls):.3%}'
     axes.text(text_x, text_y, text, fontsize=11, ha='center', va='bottom')
+
+plt.show()
 
