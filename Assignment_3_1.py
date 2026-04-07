@@ -25,12 +25,11 @@ values = [1,2,3,4,5,6]
 frequencies = np.array([rolls.count(v) for v in values]) 
 
 # Create bar graph with Seaborn
-title = f'Rolling a Six-Sided Die {len(rolls):,} Times'
 sns.set_style('whitegrid')
 axes = sns.barplot(x=values, y=frequencies, hue=values, legend=False, palette='bright')
 
 # Add title and label axes
-axes.set_title(title)
+axes.set_title(f'Rolling a Six-Sided Die {len(rolls):,} Times')
 axes.set(xlabel='Die Value', ylabel='Frequency')
 
 # Set upper range of y-axis
