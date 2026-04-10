@@ -6,70 +6,72 @@
 # Student: Justin Hudson
 # Instructor: Kaleab Gorfu
 # CS 121: Python for DS and ML
-# Date: 05/04/2026
+# Date: 09/04/2026
 
 ################################
 
-# RollDieDynamic.py
-"""Dynamically graphing frequencies of die rolls."""
+# Import necessary libraries
 from matplotlib import animation
 import matplotlib.pyplot as plt
-import random 
 import seaborn as sns
+import random 
 import sys
 
+def positive_int(number_string):
+    if number_string.isdecimal() and int(number_string) > 0:
+        return True
+    else:
+        return False
+
+def int_greater_than_one(number_string):
+    if number_string.isdecimal() and int(number_string) > 1:
+        return True
+    else:
+        return False
+
+# Define function to be run for each frame of FuncAnimation
 def update(frame_number, rolls, faces, frequencies):
-    """Configures bar plot contents for each animation frame."""
-    # roll die and update frequencies
     for i in range(rolls):
-        frequencies[random.randrange(1, 7) - 1] += 1 
+        frequencies[random.randint(1, 6) - 1] += 1 
 
-    # reconfigure plot for updated die frequencies
-    plt.cla()  # clear old contents contents of current Figure
-    axes = sns.barplot(x=faces, y=frequencies, palette='bright')  # new bars
-    axes.set_title(f'Die Frequencies for {sum(frequencies):,} Rolls')
-    axes.set(xlabel='Die Value', ylabel='Frequency')  
-    axes.set_ylim(top=max(frequencies) * 1.10)  # scale y-axis by 10%
+    plt.cla()
+    axes = sns.barplot(x=faces, y=frequencies, hue=faces, legend=False, palette="colorblind")  
+    axes.set_title(f"Rolling a Six-Sided Dice {sum(frequencies):,} Times")
+    axes.set(xlabel="Die Value", ylabel="Frequency")  
+    axes.set_ylim(top=max(frequencies) * 1.10)
 
-    # display frequency & percentage above each patch (bar)
     for bar, frequency in zip(axes.patches, frequencies):
         text_x = bar.get_x() + bar.get_width() / 2.0  
         text_y = bar.get_height() 
-        text = f'{frequency:,}\n{frequency / sum(frequencies):.3%}'
-        axes.text(text_x, text_y, text, ha='center', va='bottom')
+        text = f"{frequency:,}\n{frequency / sum(frequencies):.3%}"
+        axes.text(text_x, text_y, text, ha="center", va="bottom")
 
-# read command-line arguments for number of frames and rolls per frame
-number_of_frames = int(sys.argv[1])  
-rolls_per_frame = int(sys.argv[2])  
+# Add two command-line arguments for number of frames in FuncAnimation and number of rolls per frame
+first_arg = sys.argv[1]
+second_arg = sys.argv[2]
 
-sns.set_style('whitegrid')  # white backround with gray grid lines
-figure = plt.figure('Rolling a Six-Sided Die')  # Figure for animation
-values = list(range(1, 7))  # die faces for display on x-axis
-frequencies = [0] * 6  # six-element list of die frequencies
+if int_greater_than_one(first_arg) and positive_int(second_arg):
+    number_of_frames = int(first_arg) - 1
+    rolls_per_frame = int(second_arg)
+else:
+    while True:
+        user_input = input("\nInvalid input. Please enter your arguments again: ").split()
+        if int_greater_than_one(user_input[0]) and positive_int(user_input[1]):
+            number_of_frames = int(user_input[0]) - 1
+            rolls_per_frame = int(user_input[1])
+            break
 
-# configure and start animation that calls function update
+# Create bar graph with Seaborn
+sns.set_style("darkgrid")
+figure = plt.figure("Rolling a Six-Sided Die")
+values = [1,2,3,4,5,6]
+frequencies = [0,0,0,0,0,0]
+
+# Start animation that calls update function for each frame
 die_animation = animation.FuncAnimation(
-    figure, update, repeat=False, frames=number_of_frames - 1, interval=33,
+    figure, update, repeat=False, frames=number_of_frames, interval=33,
     fargs=(rolls_per_frame, values, frequencies))
 
-plt.show()  # display window
-
-
-#**************************************************************************
-#* (C) Copyright 1992-2018 by Deitel & Associates, Inc. and               *
-#* Pearson Education, Inc. All Rights Reserved.                           *
-#*                                                                        *
-#* DISCLAIMER: The authors and publisher of this book have used their     *
-#* best efforts in preparing the book. These efforts include the          *
-#* development, research, and testing of the theories and programs        *
-#* to determine their effectiveness. The authors and publisher make       *
-#* no warranty of any kind, expressed or implied, with regard to these    *
-#* programs or to the documentation contained in these books. The authors *
-#* and publisher shall not be liable in any event for incidental or       *
-#* consequential damages in connection with, or arising out of, the       *
-#* furnishing, performance, or use of these programs.                     *
-#**************************************************************************
-
-
-get_ipython().system('jupyter nbconvert --to script --no-prompt --TagRemovePreprocessor.remove_cell_tags="[\'remove\']" Assignment_3_2.ipynb')
+# Display bar graph
+plt.show() 
 
